@@ -2,3 +2,11 @@ spring:
   cloud:
     nacos:
       server-addr: 172.31.124.6:8848
+dubbo:
+  scan:
+    base-packages: com.aiadver.microservice.demo.remote
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: spring-cloud://localhost
