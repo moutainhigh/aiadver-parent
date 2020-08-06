@@ -6,10 +6,12 @@ import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 
 /**
  * @author lizhiyong
  */
+@EnableOpenApi
 @SpringCloudApplication
 public class DemoConsumerApplication {
 
