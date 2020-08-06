@@ -17,5 +17,15 @@
         <module>aiadver-framework-parent</module>
     </modules>
 
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.aiadver</groupId>
+                <artifactId>aiadver-dependencies</artifactId>
+                <version>${project.parent.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
