@@ -9,11 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.aiadver.api</groupId>
-    <artifactId>aiadver-api-parent</artifactId>
+    <groupId>com.aiadver.microservice</groupId>
+    <artifactId>aiadver-microservice-parent</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>aiadver-api-demo-provider</module>
+        <module>aiadver-microservice-demo-provider</module>
+        <module>aiadver-microservice-demo-consumer</module>
     </modules>
 
 

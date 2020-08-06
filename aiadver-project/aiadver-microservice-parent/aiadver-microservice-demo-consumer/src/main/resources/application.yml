@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: aiadver-microservice-demo-cunsumer
+server:
+  port: 8080

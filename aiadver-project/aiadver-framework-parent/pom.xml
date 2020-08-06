@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.aiadver.microservices</groupId>
-    <artifactId>aiadver-microservices-parent</artifactId>
+    <groupId>com.aiadver.framework</groupId>
+    <artifactId>aiadver-framework-parent</artifactId>
 
 
 </project>

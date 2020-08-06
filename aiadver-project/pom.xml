@@ -13,7 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>aiadver-api-parent</module>
-        <module>aiadver-microservices-parent</module>
+        <module>aiadver-microservice-parent</module>
+        <module>aiadver-framework-parent</module>
     </modules>
 
 
