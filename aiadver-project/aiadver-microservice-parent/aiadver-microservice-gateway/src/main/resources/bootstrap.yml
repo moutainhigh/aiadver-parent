@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    nacos:
+      server-addr: 172.31.124.6:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+          route-id-prefix: aiadver-microservice-
