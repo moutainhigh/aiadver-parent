@@ -1,4 +1,4 @@
-package com.aiadver.microservice.demo.controller;
+package com.aiadver.microservice.demo.remote;
 
 import com.aiadver.api.demo.provider.model.DemoModel;
 import com.aiadver.api.demo.provider.service.FeignDemoRemoteService;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-public class FeignDemoController implements FeignDemoRemoteService {
+public class FeignDemoRemoteServiceImpl implements FeignDemoRemoteService {
 
     @Resource(name = "demoService")
     private DemoService demoService;
