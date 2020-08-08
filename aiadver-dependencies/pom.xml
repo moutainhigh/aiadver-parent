@@ -21,6 +21,17 @@
             </dependency>
 
             <dependency>
+                <groupId>com.aiadver.framework</groupId>
+                <artifactId>aiadver-framework-microservice</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aiadver.microservice.admin</groupId>
+                <artifactId>aiadver-microservice-admin</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.aiadver.microservice.demo</groupId>
                 <artifactId>aiadver-microservice-demo-consumer</artifactId>
                 <version>${project.parent.version}</version>

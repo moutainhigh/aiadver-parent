@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    nacos:
+      server-addr: 172.31.124.6:8848
+      config:
+        file-extension: yaml
+        shared-configs:
+          - data-id: application-microservice.yaml
+            group: "DEFAULT_GROUP"
+            refresh: true
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: spring-cloud://localhost

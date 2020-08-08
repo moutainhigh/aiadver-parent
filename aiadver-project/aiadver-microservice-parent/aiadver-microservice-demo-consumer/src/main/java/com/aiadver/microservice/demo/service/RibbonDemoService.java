@@ -4,6 +4,9 @@ import com.aiadver.api.demo.provider.model.DemoModel;
 
 import java.util.List;
 
+/**
+ * @author george
+ */
 public interface RibbonDemoService {
 
     /**

@@ -11,6 +11,10 @@
 
     <groupId>com.aiadver.framework</groupId>
     <artifactId>aiadver-framework-parent</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>aiadver-framework-microservice</module>
+    </modules>
 
 
 </project>
