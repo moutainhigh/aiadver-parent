@@ -30,6 +30,11 @@
                 <artifactId>aiadver-microservice-demo-provider</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.aiadver.microservice.gateway</groupId>
+                <artifactId>aiadver-microservice-gateway</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>io.springfox</groupId>

@@ -16,6 +16,7 @@
         <module>aiadver-microservice-demo-provider</module>
         <module>aiadver-microservice-demo-consumer</module>
         <module>aiadver-microservice-gateway</module>
+        <module>aiadver-microservice-admin</module>
     </modules>
 
 

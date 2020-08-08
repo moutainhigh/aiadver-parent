@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider
     @Override
     public List<SwaggerResource> get() {
         loadSwaggerResources();
-        return List.copyOf(swaggerResources.values());
+        return new ArrayList<>(swaggerResources.values());
     }
 
     private SwaggerResource swaggerResource(String name, String location) {

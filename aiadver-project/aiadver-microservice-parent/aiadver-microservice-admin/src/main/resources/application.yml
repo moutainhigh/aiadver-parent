@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: aiadver-microservice-admin
+server:
+  port: 8180
