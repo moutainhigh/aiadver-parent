@@ -1,6 +1,6 @@
 package com.aiadver.microservice.demo.service.impl;
 
-import com.aiadver.api.demo.provider.model.DemoModel;
+import com.aiadver.api.demo.model.DemoModel;
 import com.aiadver.microservice.demo.service.DemoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

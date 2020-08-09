@@ -1,6 +1,6 @@
 package com.aiadver.microservice.demo.controller;
 
-import com.aiadver.api.demo.provider.model.DemoModel;
+import com.aiadver.api.demo.model.DemoModel;
 import com.aiadver.microservice.demo.service.DemoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

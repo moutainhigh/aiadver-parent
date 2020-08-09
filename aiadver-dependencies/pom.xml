@@ -14,39 +14,53 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- api -->
             <dependency>
-                <groupId>com.aiadver.api.demo</groupId>
+                <groupId>com.aiadver.api</groupId>
                 <artifactId>aiadver-api-demo-provider</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.aiadver.api</groupId>
+                <artifactId>aiadver-api-user</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
 
+            <!-- 框架 -->
             <dependency>
                 <groupId>com.aiadver.framework</groupId>
                 <artifactId>aiadver-framework-microservice</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
 
+            <!-- 微服务 -->
             <dependency>
-                <groupId>com.aiadver.microservice.admin</groupId>
+                <groupId>com.aiadver.microservice</groupId>
                 <artifactId>aiadver-microservice-admin</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.aiadver.microservice.demo</groupId>
+                <groupId>com.aiadver.microservice</groupId>
                 <artifactId>aiadver-microservice-demo-consumer</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.aiadver.microservice.demo</groupId>
+                <groupId>com.aiadver.microservice</groupId>
                 <artifactId>aiadver-microservice-demo-provider</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.aiadver.microservice.gateway</groupId>
+                <groupId>com.aiadver.microservice</groupId>
                 <artifactId>aiadver-microservice-gateway</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.aiadver.microservice</groupId>
+                <artifactId>aiadver-microservice-user</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
 
+            <!-- 第三方 -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>

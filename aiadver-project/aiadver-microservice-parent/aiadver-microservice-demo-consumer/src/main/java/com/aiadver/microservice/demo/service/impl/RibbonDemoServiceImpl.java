@@ -1,6 +1,6 @@
 package com.aiadver.microservice.demo.service.impl;
 
-import com.aiadver.api.demo.provider.model.DemoModel;
+import com.aiadver.api.demo.model.DemoModel;
 import com.aiadver.microservice.demo.service.RibbonDemoService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

@@ -1,7 +1,7 @@
 package com.aiadver.microservice.demo.remote;
 
-import com.aiadver.api.demo.provider.model.DemoModel;
-import com.aiadver.api.demo.provider.service.FeignDemoRemoteService;
+import com.aiadver.api.demo.model.DemoModel;
+import com.aiadver.api.demo.service.FeignDemoRemoteService;
 import com.aiadver.microservice.demo.service.DemoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;

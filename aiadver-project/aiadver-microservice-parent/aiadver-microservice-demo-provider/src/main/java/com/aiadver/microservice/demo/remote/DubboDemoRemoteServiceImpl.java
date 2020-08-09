@@ -1,7 +1,7 @@
 package com.aiadver.microservice.demo.remote;
 
-import com.aiadver.api.demo.provider.model.DemoModel;
-import com.aiadver.api.demo.provider.service.DubboDemoRemoteService;
+import com.aiadver.api.demo.model.DemoModel;
+import com.aiadver.api.demo.service.DubboDemoRemoteService;
 import com.aiadver.microservice.demo.service.DemoService;
 import org.apache.dubbo.config.annotation.Service;
 

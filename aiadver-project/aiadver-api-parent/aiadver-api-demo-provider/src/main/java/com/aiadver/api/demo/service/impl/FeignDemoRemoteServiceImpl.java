@@ -1,7 +1,7 @@
-package com.aiadver.api.demo.provider.service.impl;
+package com.aiadver.api.demo.service.impl;
 
-import com.aiadver.api.demo.provider.model.DemoModel;
-import com.aiadver.api.demo.provider.service.FeignDemoRemoteService;
+import com.aiadver.api.demo.model.DemoModel;
+import com.aiadver.api.demo.service.FeignDemoRemoteService;
 
 import java.util.Collections;
 import java.util.List;

@@ -14,6 +14,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>aiadver-api-demo-provider</module>
+        <module>aiadver-api-user</module>
     </modules>
 
 

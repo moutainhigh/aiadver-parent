@@ -1,6 +1,6 @@
 package com.aiadver.microservice.demo.service;
 
-import com.aiadver.api.demo.provider.model.DemoModel;
+import com.aiadver.api.demo.model.DemoModel;
 
 import java.util.List;
 

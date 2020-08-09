@@ -1,4 +1,4 @@
-package com.aiadver.api.demo.provider.model;
+package com.aiadver.api.demo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

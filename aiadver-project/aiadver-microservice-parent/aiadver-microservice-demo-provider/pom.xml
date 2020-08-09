@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.aiadver.microservice.demo</groupId>
     <artifactId>aiadver-microservice-demo-provider</artifactId>
 
     <dependencies>
@@ -23,7 +22,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.aiadver.api.demo</groupId>
+            <groupId>com.aiadver.api</groupId>
             <artifactId>aiadver-api-demo-provider</artifactId>
         </dependency>
     </dependencies>

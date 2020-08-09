@@ -1,6 +1,6 @@
 package com.aiadver.microservice.demo.service;
 
-import com.aiadver.api.demo.provider.service.FeignDemoRemoteService;
+import com.aiadver.api.demo.service.FeignDemoRemoteService;
 import com.aiadver.microservice.demo.service.impl.FeignDemoServiceImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 
