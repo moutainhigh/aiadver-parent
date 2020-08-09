@@ -26,10 +26,5 @@
             <groupId>com.aiadver.api.demo</groupId>
             <artifactId>aiadver-api-demo-provider</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-        </dependency>
     </dependencies>
 </project>
