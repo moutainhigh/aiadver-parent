@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -34,11 +33,10 @@ public class GatewayRateLimitFilter implements WebFilter {
         } else {
             ServerHttpResponse response = exchange.getResponse();
             response.setStatusCode(HttpStatus.TOO_MANY_REQUESTS);
-            return response.writeWith(Flux.create(sink -> {
+            return response.writeWith(Mono.create(sink -> {
                 NettyDataBufferFactory nettyDataBufferFactory = new NettyDataBufferFactory(new UnpooledByteBufAllocator(false));
                 DataBuffer dataBuffer = nettyDataBufferFactory.wrap("too many request!".getBytes());
-                sink.next(dataBuffer);
-                sink.complete();
+                sink.success(dataBuffer);
             }));
         }
     }
