@@ -1,3 +1,6 @@
 dubbo:
   cloud:
     subscribed-services: aiadver-microservice-demo-provider
+feign:
+  httpclient:
+    enabled: true

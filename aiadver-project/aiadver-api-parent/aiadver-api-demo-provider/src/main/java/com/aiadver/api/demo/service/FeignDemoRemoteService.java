@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * @author lizhiyong
  */
+@RequestMapping(value = "/provider/demoRemote")
 public interface FeignDemoRemoteService {
 
     /**

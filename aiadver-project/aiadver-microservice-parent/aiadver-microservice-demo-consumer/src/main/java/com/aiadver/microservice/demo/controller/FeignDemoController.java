@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping(value = "/consumer/feign/demo")
 public class FeignDemoController {
 
-    @Resource(name = "feignDemoService")
+    @Resource(description = "aiadver-microservice-demo-provider")
     private FeignDemoService demoService;
 
     /**

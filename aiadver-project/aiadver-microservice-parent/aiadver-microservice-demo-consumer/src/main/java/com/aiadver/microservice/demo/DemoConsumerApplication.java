@@ -4,6 +4,7 @@ import com.alibaba.cloud.sentinel.annotation.SentinelRestTemplate;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import springfox.documentation.oas.annotations.EnableOpenApi;
@@ -12,6 +13,7 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
  * @author lizhiyong
  */
 @EnableOpenApi
+@EnableFeignClients
 @SpringCloudApplication
 public class DemoConsumerApplication {
 
