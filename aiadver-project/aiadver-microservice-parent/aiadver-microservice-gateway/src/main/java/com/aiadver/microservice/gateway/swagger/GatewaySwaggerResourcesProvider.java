@@ -22,7 +22,7 @@ import java.util.Map;
 public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider {
 
     public static final String API_URI = "/v3/api-docs";
-    private static final Map<String, SwaggerResource> swaggerResources = new HashMap<>();
+    private static final Map<String, SwaggerResource> SWAGGER_RESOURCES = new HashMap<>();
     private final RouteDefinitionLocator routeLocator;
 
     @Value("${spring.cloud.gateway.discovery.locator.route-id-prefix}")
@@ -44,7 +44,7 @@ public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider
             String location = routeDefinition.getPredicates().get(0).getArgs().get("pattern").replace("/**", API_URI);
 
             if (!gatewayName.equalsIgnoreCase(name)) {
-                swaggerResources.put(name, swaggerResource(name, location));
+                SWAGGER_RESOURCES.put(name, swaggerResource(name, location));
             }
         });
     }
@@ -52,7 +52,7 @@ public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider
     @Override
     public List<SwaggerResource> get() {
         loadSwaggerResources();
-        return new ArrayList<>(swaggerResources.values());
+        return new ArrayList<>(SWAGGER_RESOURCES.values());
     }
 
     private SwaggerResource swaggerResource(String name, String location) {

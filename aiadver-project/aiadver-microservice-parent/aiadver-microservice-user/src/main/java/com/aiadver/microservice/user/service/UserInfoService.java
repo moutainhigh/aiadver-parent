@@ -4,6 +4,9 @@ import com.aiadver.api.user.model.UserInfo;
 
 import java.util.List;
 
+/**
+ * @author george
+ */
 public interface UserInfoService {
 
     /**
