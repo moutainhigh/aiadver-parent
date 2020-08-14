@@ -1,15 +1,13 @@
-package com.aiadver.api.demo.service;
+package com.aiadver.api.demo.client;
 
 import com.aiadver.api.demo.model.DemoModel;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * @author lizhiyong
  */
-@RequestMapping(value = "/provider/demoRemote")
-public interface FeignDemoRemoteService {
+public interface DubboDemoClient {
 
     /**
      * demo 查询请求
@@ -17,7 +15,6 @@ public interface FeignDemoRemoteService {
      * @param model
      * @return
      */
-    @GetMapping
     List<DemoModel> query(DemoModel model);
 
     /**
@@ -26,8 +23,7 @@ public interface FeignDemoRemoteService {
      * @param id
      * @return
      */
-    @GetMapping(value = "/{id:\\d+}")
-    DemoModel getInfo(@PathVariable Integer id);
+    DemoModel getInfo(Integer id);
 
     /**
      * demo 新增请求
@@ -35,8 +31,7 @@ public interface FeignDemoRemoteService {
      * @param model
      * @return
      */
-    @PostMapping
-    DemoModel create(@RequestBody DemoModel model);
+    DemoModel create(DemoModel model);
 
     /**
      * demo 更新请求
@@ -44,14 +39,12 @@ public interface FeignDemoRemoteService {
      * @param model
      * @return
      */
-    @PutMapping
-    DemoModel update(@RequestBody DemoModel model);
+    DemoModel update(DemoModel model);
 
     /**
      * demo 删除请求
      *
      * @param id
      */
-    @DeleteMapping(value = "/{id:\\d+}")
-    void delete(@PathVariable Integer id);
+    void delete(Integer id);
 }

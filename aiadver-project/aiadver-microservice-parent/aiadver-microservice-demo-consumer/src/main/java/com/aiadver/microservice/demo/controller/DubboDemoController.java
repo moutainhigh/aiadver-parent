@@ -1,7 +1,7 @@
 package com.aiadver.microservice.demo.controller;
 
+import com.aiadver.api.demo.client.DubboDemoClient;
 import com.aiadver.api.demo.model.DemoModel;
-import com.aiadver.api.demo.service.DubboDemoRemoteService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class DubboDemoController {
 
     @Reference(retries = 0, check = false)
-    private DubboDemoRemoteService demoService;
+    private DubboDemoClient demoService;
 
     /**
      * demo 查询请求

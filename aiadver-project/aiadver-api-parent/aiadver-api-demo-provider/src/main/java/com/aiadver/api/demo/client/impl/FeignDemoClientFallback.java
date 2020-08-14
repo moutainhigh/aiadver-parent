@@ -1,7 +1,7 @@
-package com.aiadver.api.demo.service.impl;
+package com.aiadver.api.demo.client.impl;
 
+import com.aiadver.api.demo.client.FeignDemoClient;
 import com.aiadver.api.demo.model.DemoModel;
-import com.aiadver.api.demo.service.FeignDemoRemoteService;
 
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author lizhiyong
  */
-public class FeignDemoRemoteServiceImpl implements FeignDemoRemoteService {
+public class FeignDemoClientFallback implements FeignDemoClient {
 
     private final DemoModel ERROR_MODEL = new DemoModel(0, "error");
 

@@ -1,7 +1,7 @@
 package com.aiadver.microservice.demo.remote;
 
+import com.aiadver.api.demo.client.DubboDemoClient;
 import com.aiadver.api.demo.model.DemoModel;
-import com.aiadver.api.demo.service.DubboDemoRemoteService;
 import com.aiadver.microservice.demo.service.DemoService;
 import org.apache.dubbo.config.annotation.Service;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * @author lizhiyong
  */
 @Service
-public class DubboDemoRemoteServiceImpl implements DubboDemoRemoteService {
+public class DubboDemoRemoteService implements DubboDemoClient {
 
     @Resource(name = "demoService")
     private DemoService demoService;

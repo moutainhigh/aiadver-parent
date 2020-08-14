@@ -1,7 +1,7 @@
-package com.aiadver.microservice.demo.remote;
+package com.aiadver.microservice.demo.controller;
 
+import com.aiadver.api.demo.client.FeignDemoClient;
 import com.aiadver.api.demo.model.DemoModel;
-import com.aiadver.api.demo.service.FeignDemoRemoteService;
 import com.aiadver.microservice.demo.service.DemoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-public class FeignDemoRemoteServiceImpl implements FeignDemoRemoteService {
+public class FeignDemoController implements FeignDemoClient {
 
     @Resource(name = "demoService")
     private DemoService demoService;
