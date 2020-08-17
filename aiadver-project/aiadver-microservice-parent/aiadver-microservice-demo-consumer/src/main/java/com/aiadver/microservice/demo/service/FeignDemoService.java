@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 /**
  * @author george
  */
-@FeignClient(name = "aiadver-microservice-demo-provider", fallback = FeignDemoService.FeignDemoServiceFallback.class)
+@FeignClient(contextId = "feignDemoService", name = "aiadver-microservice-demo-provider", fallback = FeignDemoService.FeignDemoServiceFallback.class)
 public interface FeignDemoService extends FeignDemoClient {
 
     class FeignDemoServiceFallback extends FeignDemoClientFallback implements FeignDemoService {
