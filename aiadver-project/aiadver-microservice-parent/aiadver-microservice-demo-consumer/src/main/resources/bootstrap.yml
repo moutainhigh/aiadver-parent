@@ -4,3 +4,5 @@ dubbo:
 feign:
   httpclient:
     enabled: true
+  sentinel:
+    enabled: true

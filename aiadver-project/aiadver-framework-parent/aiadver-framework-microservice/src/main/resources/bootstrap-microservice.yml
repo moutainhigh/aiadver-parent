@@ -8,6 +8,9 @@ spring:
           - data-id: application-microservice.yaml
             group: "DEFAULT_GROUP"
             refresh: true
+    sentinel:
+      transport:
+        dashboard: 172.31.124.6:8388
 dubbo:
   protocol:
     name: dubbo

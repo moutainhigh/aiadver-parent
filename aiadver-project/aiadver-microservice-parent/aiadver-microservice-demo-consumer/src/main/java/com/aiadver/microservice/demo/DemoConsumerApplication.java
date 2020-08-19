@@ -1,5 +1,6 @@
 package com.aiadver.microservice.demo;
 
+import com.aiadver.framework.microservice.support.ExceptionUtil;
 import com.alibaba.cloud.sentinel.annotation.SentinelRestTemplate;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
@@ -23,7 +24,7 @@ public class DemoConsumerApplication {
 
     @Bean(name = "restTemplate")
     @LoadBalanced
-    @SentinelRestTemplate
+    @SentinelRestTemplate(blockHandler = "handleException", blockHandlerClass = ExceptionUtil.class)
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
