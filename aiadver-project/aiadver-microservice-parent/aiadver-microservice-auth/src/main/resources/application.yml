@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: aiadver-microservice-auth
+server:
+  port: 8084

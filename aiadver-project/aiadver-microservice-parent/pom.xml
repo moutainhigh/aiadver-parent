@@ -18,6 +18,7 @@
         <module>aiadver-microservice-demo-consumer</module>
         <module>aiadver-microservice-gateway</module>
         <module>aiadver-microservice-user</module>
+        <module>aiadver-microservice-auth</module>
     </modules>
 
     <dependencies>
