@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @author george
  */
 @Component
-public class UserTranslator extends BaseTranslator<User, UserInfo> {
+public class UserTranslator implements BaseTranslator<User, UserInfo> {
 
     @Override
     public UserInfo copyEntityToModel(User user) {
