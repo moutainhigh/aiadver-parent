@@ -1,5 +1,13 @@
 spring:
   application:
     name: aiadver-microservice-user
+  datasource:
+    url: jdbc:mysql://172.31.124.6:3306/aiadver-microservice-user?serverTimezone=UTC&characterEncoding=utf8&useSSL=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
 server:
   port: 8083

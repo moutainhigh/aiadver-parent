@@ -1,14 +1,17 @@
 package com.aiadver.microservice.user.service.impl;
 
 import com.aiadver.api.user.model.UserInfo;
+import com.aiadver.microservice.user.entity.User;
+import com.aiadver.microservice.user.repository.UserRepository;
 import com.aiadver.microservice.user.service.UserInfoService;
+import com.aiadver.microservice.user.translator.UserTranslator;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author george
@@ -17,37 +20,50 @@ import java.util.Map;
 @Service("userInfoService")
 public class UserInfoServiceImpl implements UserInfoService {
 
-    private static final Map<Long, UserInfo> USER_INFO_MAP = new HashMap<>();
+
+    @Resource
+    private UserRepository repository;
+
+    @Resource
+    private UserTranslator translator;
 
     @Override
     public List<UserInfo> query(UserInfo model) {
         log.info("query model: " + model.toString());
-        List<UserInfo> demoModels = new ArrayList<>();
-        demoModels.addAll(USER_INFO_MAP.values());
-        return demoModels;
+        User user = translator.copyModelToEntity(model);
+        List<User> users = repository.findAll(Example.of(user));
+        return translator.copyEntityToModel(users);
     }
 
     @Override
     public UserInfo getInfo(Long id) {
-        log.info("getInfo id: " + id);
-        return USER_INFO_MAP.get(id);
+        log.info("create id: " + id);
+        Optional<User> user = repository.findById(id);
+        if (user.isPresent()) {
+            return translator.copyEntityToModel(user.get());
+        }
+        return null;
     }
 
     @Override
     public UserInfo create(UserInfo model) {
         log.info("create model: " + model.toString());
-        return USER_INFO_MAP.put(model.getId(), model);
+        User user = translator.copyModelToEntity(model);
+        user = repository.save(user);
+        return translator.copyEntityToModel(user);
     }
 
     @Override
     public UserInfo update(UserInfo model) {
         log.info("update model: " + model.toString());
-        return USER_INFO_MAP.put(model.getId(), model);
+        User user = translator.copyModelToEntity(model);
+        user = repository.save(user);
+        return translator.copyEntityToModel(user);
     }
 
     @Override
     public void delete(Long id) {
         log.info("delete id: " + id);
-        USER_INFO_MAP.remove(id);
+        repository.deleteById(id);
     }
 }

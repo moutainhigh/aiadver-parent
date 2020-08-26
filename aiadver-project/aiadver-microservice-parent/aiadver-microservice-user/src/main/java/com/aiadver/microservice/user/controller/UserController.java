@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * @author george
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Resource(name = "userInfoService")

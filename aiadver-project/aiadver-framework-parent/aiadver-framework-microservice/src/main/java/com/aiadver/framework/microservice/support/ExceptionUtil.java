@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 
+/**
+ * @author george
+ */
 @Slf4j
 public class ExceptionUtil {
 

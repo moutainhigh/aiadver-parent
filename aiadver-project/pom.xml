@@ -13,8 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>aiadver-api-parent</module>
-        <module>aiadver-microservice-parent</module>
+        <module>aiadver-boot-starter-parent</module>
         <module>aiadver-framework-parent</module>
+        <module>aiadver-microservice-parent</module>
     </modules>
 
     <dependencyManagement>
