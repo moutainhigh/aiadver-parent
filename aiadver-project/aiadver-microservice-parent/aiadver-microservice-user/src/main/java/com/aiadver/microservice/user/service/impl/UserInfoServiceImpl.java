@@ -29,9 +29,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public List<UserInfo> query(UserInfo model) {
         log.info("query model: " + model.toString());
-        User user = translator.copyModelToEntity(model);
+        User user = translator.copyTargetToSource(model);
         List<User> users = repository.findAll(user);
-        return translator.copyEntityToModel(users);
+        return translator.copySourceToTarget(users);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         log.info("create id: " + id);
         Optional<User> user = repository.findById(id);
         if (user.isPresent()) {
-            return translator.copyEntityToModel(user.get());
+            return translator.copySourceToTarget(user.get());
         }
         return null;
     }
@@ -47,17 +47,17 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public UserInfo create(UserInfo model) {
         log.info("create model: " + model.toString());
-        User user = translator.copyModelToEntity(model);
+        User user = translator.copyTargetToSource(model);
         user = repository.save(user);
-        return translator.copyEntityToModel(user);
+        return translator.copySourceToTarget(user);
     }
 
     @Override
     public UserInfo update(UserInfo model) {
         log.info("update model: " + model.toString());
-        User user = translator.copyModelToEntity(model);
+        User user = translator.copyTargetToSource(model);
         user = repository.save(user);
-        return translator.copyEntityToModel(user);
+        return translator.copySourceToTarget(user);
     }
 
     @Override
