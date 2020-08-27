@@ -6,7 +6,6 @@ import com.aiadver.microservice.user.repository.UserRepository;
 import com.aiadver.microservice.user.service.UserInfoService;
 import com.aiadver.microservice.user.translator.UserTranslator;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -31,7 +30,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     public List<UserInfo> query(UserInfo model) {
         log.info("query model: " + model.toString());
         User user = translator.copyModelToEntity(model);
-        List<User> users = repository.findAll(Example.of(user));
+        List<User> users = repository.findAll(user);
         return translator.copyEntityToModel(users);
     }
 

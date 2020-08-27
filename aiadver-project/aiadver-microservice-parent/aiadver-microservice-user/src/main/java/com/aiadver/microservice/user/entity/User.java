@@ -1,22 +1,16 @@
 package com.aiadver.microservice.user.entity;
 
+import com.aiadver.boot.data.jpa.base.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * @author george
  */
 @Entity
 @Data
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends BaseEntity {
 
     private String username;
 
