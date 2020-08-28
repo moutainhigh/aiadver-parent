@@ -1,7 +1,7 @@
 package com.aiadver.microservice.user.translator;
 
 import com.aiadver.api.user.model.UserInfo;
-import com.aiadver.framework.microservice.support.Translator;
+import com.aiadver.framework.microservice.support.BaseTranslator;
 import com.aiadver.microservice.user.entity.User;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author george
  */
 @Component
-public class UserTranslator implements Translator<User, UserInfo> {
+public class UserTranslator extends BaseTranslator<User, UserInfo> {
 
     @Override
     public UserInfo copySourceToTarget(User user) {

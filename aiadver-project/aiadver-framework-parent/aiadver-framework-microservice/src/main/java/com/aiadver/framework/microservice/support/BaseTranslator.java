@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 /**
  * @author george
  */
-public interface Translator<Source, Target> {
+public abstract class BaseTranslator<Source, Target> {
 
     /**
      * 将Source对象转换成Target对象
@@ -14,7 +14,7 @@ public interface Translator<Source, Target> {
      * @param source
      * @return
      */
-    Target copySourceToTarget(Source source);
+    public abstract Target copySourceToTarget(Source source);
 
     /**
      * 将Source对象转换成Target对象
@@ -22,7 +22,7 @@ public interface Translator<Source, Target> {
      * @param sources
      * @return
      */
-    default List<Target> copySourceToTarget(List<Source> sources) {
+    public List<Target> copySourceToTarget(List<Source> sources) {
         return sources.stream().map(this::copySourceToTarget).collect(Collectors.toList());
     }
 
@@ -32,7 +32,7 @@ public interface Translator<Source, Target> {
      * @param target
      * @return
      */
-    Source copyTargetToSource(Target target);
+    public abstract Source copyTargetToSource(Target target);
 
     /**
      * 将Target对象转换成Source对象
@@ -40,7 +40,9 @@ public interface Translator<Source, Target> {
      * @param targets
      * @return
      */
-    default List<Source> copyTargetToSource(List<Target> targets) {
+    public List<Source> copyTargetToSource(List<Target> targets) {
         return targets.stream().map(this::copyTargetToSource).collect(Collectors.toList());
     }
+
+
 }
