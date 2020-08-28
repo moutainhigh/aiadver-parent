@@ -6,6 +6,7 @@ import com.aiadver.microservice.auth.service.UserService;
 import com.aiadver.microservice.auth.translator.UserInfoTranslator;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,6 +16,9 @@ import javax.annotation.Resource;
  */
 @Service("userService")
 public class UserServiceImpl implements UserService {
+
+    @Resource(name = "passwordEncoder")
+    private PasswordEncoder passwordEncoder;
 
     @Resource(name = "userInfoRepository")
     private UserInfoRepository userInfoRepository;
@@ -26,5 +30,18 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserInfo userInfo = userInfoRepository.getOneByUsername(username);
         return userInfoTranslator.copySourceToTarget(userInfo);
+    }
+
+    @Override
+    public UserDetails updatePassword(UserDetails user, String newPassword) {
+        UserInfo userInfo = userInfoRepository.getOneByUsername(user.getUsername());
+        userInfo.setPassword(passwordEncoder.encode(newPassword));
+        userInfo = userInfoRepository.save(userInfo);
+        return userInfoTranslator.copySourceToTarget(userInfo);
+    }
+
+    @Override
+    public void saveDefaultUser() {
+
     }
 }

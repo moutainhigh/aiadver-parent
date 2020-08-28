@@ -18,5 +18,15 @@ spring:
         max-idle: 8
         max-active: 8
         max-wait: 500
+  security:
+    user:
+      name: admin
+      password: admin
 server:
   port: 8084
+
+security:
+  oauth2:
+    client:
+      client-id: manager-app
+      client-secret: 123456

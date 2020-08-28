@@ -5,11 +5,13 @@ import com.aiadver.microservice.auth.entity.ClientInfo;
 import com.aiadver.microservice.auth.repository.ClientInfoRepository;
 import com.aiadver.microservice.auth.service.ClientService;
 import com.aiadver.microservice.auth.translator.ClientInfoTranslator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientAlreadyExistsException;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.security.oauth2.provider.NoSuchClientException;
+import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,8 +20,12 @@ import java.util.List;
 /**
  * @author george
  */
+@Slf4j
 @Service("clientService")
 public class ClientServiceImpl implements ClientService {
+
+    @Resource(name = "defaultClientDetails")
+    private BaseClientDetails defaultClientDetails;
 
     @Resource(name = "passwordEncoder")
     private PasswordEncoder passwordEncoder;
@@ -72,5 +78,15 @@ public class ClientServiceImpl implements ClientService {
     public List<ClientDetails> listClientDetails() {
         List<ClientInfo> clientInfos = clientInfoRepository.findAll();
         return clientInfoTranslator.copySourceToTarget(clientInfos);
+    }
+
+    @Override
+    public void saveDefaultClient() {
+        ClientInfo clientInfo = clientInfoTranslator.copyTargetToSource(defaultClientDetails);
+        ClientInfo info = clientInfoRepository.findOneByClientId(defaultClientDetails.getClientId());
+        if (info != null) {
+            info = CommonUtils.combine(clientInfo, info);
+        }
+        clientInfoRepository.saveAndFlush(info);
     }
 }
