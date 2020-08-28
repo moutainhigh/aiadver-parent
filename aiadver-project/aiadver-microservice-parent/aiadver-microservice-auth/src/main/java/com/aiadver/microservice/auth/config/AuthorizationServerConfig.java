@@ -1,13 +1,18 @@
 package com.aiadver.microservice.auth.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.annotation.Resource;
 
@@ -18,38 +23,39 @@ import javax.annotation.Resource;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Resource(name = "passwordEncoder")
-    private PasswordEncoder passwordEncoder;
-
     @Resource(name = "authenticationManager")
     private AuthenticationManager authenticationManager;
 
+    @Resource(name = "clientService")
+    private ClientDetailsService clientDetailsService;
+
+    @Resource(name = "userService")
+    private UserDetailsService userDetailsService;
+
+    @Resource(name = "redisConnectionFactory")
+    private RedisConnectionFactory redisConnectionFactory;
+
+    @Bean
+    public TokenStore tokenStore() {
+        return new RedisTokenStore(redisConnectionFactory);
+    }
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-
-        clients.inMemory()
-                .withClient("manager-app")
-                .secret(passwordEncoder.encode("123456"))
-                .scopes("read", "write")
-                .accessTokenValiditySeconds(3600)
-                .redirectUris("demo-consumer")
-                .authorizedGrantTypes("password")
-                .and()
-                .withClient("client-app")
-                .secret(passwordEncoder.encode("123456"))
-                .scopes("read")
-                .accessTokenValiditySeconds(3600)
-                .redirectUris("demo-consumer")
-                .authorizedGrantTypes("password");
+        clients.withClientDetails(clientDetailsService);
     }
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.checkTokenAccess("isAuthenticated()");
+        security.allowFormAuthenticationForClients()
+                .tokenKeyAccess("permitAll")
+                .checkTokenAccess("isAuthenticated()");
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager);
+        endpoints.userDetailsService(userDetailsService)
+                .authenticationManager(authenticationManager)
+                .tokenStore(tokenStore());
     }
 }
