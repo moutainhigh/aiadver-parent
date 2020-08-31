@@ -32,21 +32,30 @@ public class CommonUtils {
     }
 
     public static String getString(Set<String> set) {
-        if (set == null) {
-            return null;
+        if (set == null || set.isEmpty()) {
+            return "";
         }
         return set.stream().collect(Collectors.joining(","));
     }
 
     public static List<String> getList(String s) {
+        if (s == null || s.isEmpty()) {
+            return Collections.<String>emptyList();
+        }
         return Arrays.asList(s.split(","));
     }
 
     public static <T> List<T> getList(Collection<T> collection) {
+        if (collection == null || collection.isEmpty()) {
+            return Collections.<T>emptyList();
+        }
         return collection.stream().collect(Collectors.toList());
     }
 
     public static Set<String> getSet(String s) {
+        if (s == null || s.isEmpty()) {
+            return Collections.<String>emptySet();
+        }
         return Arrays.stream(s.split(",")).collect(Collectors.toSet());
     }
 
