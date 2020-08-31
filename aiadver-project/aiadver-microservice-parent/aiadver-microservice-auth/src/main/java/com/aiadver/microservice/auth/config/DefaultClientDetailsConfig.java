@@ -1,11 +1,11 @@
 package com.aiadver.microservice.auth.config;
 
 import org.springframework.boot.autoconfigure.security.oauth2.OAuth2ClientProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 
 import javax.annotation.Resource;
@@ -18,18 +18,18 @@ import java.util.Collections;
 @Configuration
 public class DefaultClientDetailsConfig {
 
-    private final OAuth2ClientProperties client;
+    @Resource
+    private OAuth2ClientProperties client;
 
     @Resource(name = "passwordEncoder")
     private PasswordEncoder passwordEncoder;
 
-    protected DefaultClientDetailsConfig(OAuth2ClientProperties client) {
+    public DefaultClientDetailsConfig(OAuth2ClientProperties client) {
         this.client = client;
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "security.oauth2.client")
-    public BaseClientDetails defaultClientDetails() {
+    public ClientDetails defaultClientDetails() {
         BaseClientDetails details = new BaseClientDetails();
         String clientId = client.getClientId();
         String clientSecret = client.getClientSecret();

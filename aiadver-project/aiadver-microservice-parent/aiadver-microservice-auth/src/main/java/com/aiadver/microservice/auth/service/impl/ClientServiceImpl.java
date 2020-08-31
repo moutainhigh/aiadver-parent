@@ -13,7 +13,6 @@ import org.springframework.security.oauth2.provider.ClientAlreadyExistsException
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.security.oauth2.provider.NoSuchClientException;
-import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -27,7 +26,7 @@ import java.util.List;
 public class ClientServiceImpl implements ClientService {
 
     @Resource(name = "defaultClientDetails")
-    private BaseClientDetails defaultClientDetails;
+    private ClientDetails defaultClientDetails;
 
     @Resource(name = "passwordEncoder")
     private PasswordEncoder passwordEncoder;

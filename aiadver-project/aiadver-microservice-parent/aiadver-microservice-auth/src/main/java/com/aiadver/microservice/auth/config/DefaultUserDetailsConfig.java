@@ -1,7 +1,6 @@
 package com.aiadver.microservice.auth.config;
 
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -17,6 +16,7 @@ import javax.annotation.Resource;
 @Configuration
 public class DefaultUserDetailsConfig {
 
+    @Resource
     private final SecurityProperties properties;
 
     @Resource(name = "passwordEncoder")
@@ -27,7 +27,6 @@ public class DefaultUserDetailsConfig {
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.security")
     public UserDetails defaultUserDetails() {
         SecurityProperties.User user = properties.getUser();
         UserDetails details = User.withUsername(user.getName())
