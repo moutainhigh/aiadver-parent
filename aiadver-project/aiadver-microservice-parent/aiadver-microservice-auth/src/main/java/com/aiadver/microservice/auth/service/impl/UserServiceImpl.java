@@ -7,10 +7,13 @@ import com.aiadver.microservice.auth.service.RoleService;
 import com.aiadver.microservice.auth.service.UserService;
 import com.aiadver.microservice.auth.translator.UserInfoTranslator;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -19,6 +22,8 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Service("userService")
+@Transactional(rollbackFor = Exception.class)
+@CacheConfig(cacheNames = "userService")
 public class UserServiceImpl implements UserService {
 
     @Resource(name = "defaultUserDetails")
@@ -37,6 +42,7 @@ public class UserServiceImpl implements UserService {
     private UserInfoTranslator userInfoTranslator;
 
     @Override
+    @Cacheable(value = "loadUserByUsername")
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserInfo userInfo = userInfoRepository.getOneByUsername(username);
         return userInfoTranslator.copySourceToTarget(userInfo);

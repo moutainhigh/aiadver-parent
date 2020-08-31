@@ -5,6 +5,7 @@ import com.aiadver.microservice.auth.repository.RoleInfoRepository;
 import com.aiadver.microservice.auth.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Service("roleService")
+@Transactional(rollbackFor = Exception.class)
 public class RoleServiceImpl implements RoleService {
 
     @Resource(name = "roleInfoRepository")

@@ -8,12 +8,15 @@ import com.aiadver.microservice.auth.service.ClientService;
 import com.aiadver.microservice.auth.service.RoleService;
 import com.aiadver.microservice.auth.translator.ClientInfoTranslator;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientAlreadyExistsException;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.security.oauth2.provider.NoSuchClientException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,6 +26,8 @@ import java.util.List;
  */
 @Slf4j
 @Service("clientService")
+@Transactional(rollbackFor = Exception.class)
+@CacheConfig(cacheNames = "clientService")
 public class ClientServiceImpl implements ClientService {
 
     @Resource(name = "defaultClientDetails")
@@ -44,6 +49,7 @@ public class ClientServiceImpl implements ClientService {
     private ClientInfoTranslator clientInfoTranslator;
 
     @Override
+    @Cacheable(value = "loadClientByClientId")
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
         ClientInfo clientInfo = clientInfoRepository.getOneByClientId(clientId);
         ClientDetails clientDetails = clientInfoTranslator.copySourceToTarget(clientInfo);
