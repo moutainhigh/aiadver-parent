@@ -42,6 +42,6 @@ public class UserInfoTranslator extends BaseTranslator<UserInfo, UserDetails> {
         userInfo.setCredentialsNonExpired(userDetails.isCredentialsNonExpired());
         userInfo.setAccountNonLocked(userDetails.isAccountNonLocked());
         userInfo.setRoleInfos(roleInfoTranslator.copyTargetToSource((List<GrantedAuthority>) CommonUtils.getList(userDetails.getAuthorities())));
-        return null;
+        return userInfo;
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.UUID;
 
 /**
  * @author george
@@ -20,7 +19,8 @@ import java.util.UUID;
 public class DefaultClientDetailsConfig {
 
     private final OAuth2ClientProperties client;
-    @Resource
+
+    @Resource(name = "passwordEncoder")
     private PasswordEncoder passwordEncoder;
 
     protected DefaultClientDetailsConfig(OAuth2ClientProperties client) {
@@ -31,11 +31,10 @@ public class DefaultClientDetailsConfig {
     @ConfigurationProperties(prefix = "security.oauth2.client")
     public BaseClientDetails defaultClientDetails() {
         BaseClientDetails details = new BaseClientDetails();
-        if (this.client.getClientId() == null) {
-            this.client.setClientId(UUID.randomUUID().toString());
-        }
-        details.setClientId(this.client.getClientId());
-        details.setClientSecret(passwordEncoder.encode(this.client.getClientSecret()));
+        String clientId = client.getClientId();
+        String clientSecret = client.getClientSecret();
+        details.setClientId(clientId);
+        details.setClientSecret(passwordEncoder.encode(clientSecret));
         details.setAuthorizedGrantTypes(Arrays.asList("authorization_code", "password", "client_credentials", "implicit", "refresh_token"));
         details.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
         details.setRegisteredRedirectUri(Collections.<String>emptySet());

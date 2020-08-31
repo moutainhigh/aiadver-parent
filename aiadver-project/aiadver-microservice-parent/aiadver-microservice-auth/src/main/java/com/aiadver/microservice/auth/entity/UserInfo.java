@@ -24,7 +24,7 @@ public class UserInfo extends BaseEntity {
 
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     private List<RoleInfo> roleInfos;
 

@@ -14,7 +14,7 @@ public interface ClientInfoRepository extends BaseRepository<ClientInfo, Long> {
      * @param clientId
      * @return
      */
-    ClientInfo findOneByClientId(String clientId);
+    ClientInfo getOneByClientId(String clientId);
 
 
     /**

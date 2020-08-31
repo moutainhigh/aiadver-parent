@@ -34,7 +34,7 @@ public class ClientInfo extends BaseEntity {
 
     private String autoApproveScopes;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     private List<RoleInfo> roleInfos;
 
@@ -42,7 +42,7 @@ public class ClientInfo extends BaseEntity {
 
     private Integer refreshTokenValiditySeconds;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     private List<AdditionalInfo> additionalInformation;
 }

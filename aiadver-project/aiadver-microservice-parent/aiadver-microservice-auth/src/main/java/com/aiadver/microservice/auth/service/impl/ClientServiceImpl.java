@@ -3,7 +3,9 @@ package com.aiadver.microservice.auth.service.impl;
 import com.aiadver.framework.microservice.util.CommonUtils;
 import com.aiadver.microservice.auth.entity.ClientInfo;
 import com.aiadver.microservice.auth.repository.ClientInfoRepository;
+import com.aiadver.microservice.auth.service.AdditionalService;
 import com.aiadver.microservice.auth.service.ClientService;
+import com.aiadver.microservice.auth.service.RoleService;
 import com.aiadver.microservice.auth.translator.ClientInfoTranslator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,6 +32,12 @@ public class ClientServiceImpl implements ClientService {
     @Resource(name = "passwordEncoder")
     private PasswordEncoder passwordEncoder;
 
+    @Resource(name = "roleService")
+    private RoleService roleService;
+
+    @Resource(name = "additionalService")
+    private AdditionalService additionalService;
+
     @Resource(name = "clientInfoRepository")
     private ClientInfoRepository clientInfoRepository;
 
@@ -38,7 +46,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
-        ClientInfo clientInfo = clientInfoRepository.findOneByClientId(clientId);
+        ClientInfo clientInfo = clientInfoRepository.getOneByClientId(clientId);
         ClientDetails clientDetails = clientInfoTranslator.copySourceToTarget(clientInfo);
         return clientDetails;
     }
@@ -56,8 +64,8 @@ public class ClientServiceImpl implements ClientService {
     }
 
     private void updateByClientId(ClientInfo clientInfo) {
-        ClientInfo info = clientInfoRepository.findOneByClientId(clientInfo.getClientId());
-        info = CommonUtils.combine(clientInfo, info);
+        ClientInfo info = clientInfoRepository.getOneByClientId(clientInfo.getClientId());
+        info = CommonUtils.combine(clientInfo, info, true);
         clientInfoRepository.save(info);
     }
 
@@ -83,10 +91,15 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public void saveDefaultClient() {
         ClientInfo clientInfo = clientInfoTranslator.copyTargetToSource(defaultClientDetails);
-        ClientInfo info = clientInfoRepository.findOneByClientId(defaultClientDetails.getClientId());
+        String clientId = defaultClientDetails.getClientId();
+        log.info("clientId: " + clientId);
+        ClientInfo info = clientInfoRepository.getOneByClientId(clientId);
         if (info != null) {
-            info = CommonUtils.combine(clientInfo, info);
+            clientInfo = CommonUtils.combine(clientInfo, info, false);
         }
-        clientInfoRepository.saveAndFlush(info);
+        clientInfo.setRoleInfos(roleService.loadRoleInfos(clientInfo.getRoleInfos()));
+        clientInfo.setAdditionalInformation(additionalService.loadAdditionalInfos(clientInfo.getAdditionalInformation()));
+        log.info("clientInfo: " + clientInfo.toString());
+        clientInfoRepository.saveAndFlush(clientInfo);
     }
 }
