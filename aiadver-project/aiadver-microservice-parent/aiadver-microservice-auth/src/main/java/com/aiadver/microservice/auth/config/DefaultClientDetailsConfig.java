@@ -38,6 +38,8 @@ public class DefaultClientDetailsConfig {
         details.setAuthorizedGrantTypes(Arrays.asList("authorization_code", "password", "client_credentials", "implicit", "refresh_token"));
         details.setAuthorities(AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
         details.setRegisteredRedirectUri(Collections.<String>emptySet());
+        details.setScope(Arrays.asList("read", "write"));
+        details.setResourceIds(Arrays.asList("aiadver-microservice-gateway"));
         return details;
     }
 }
