@@ -3,8 +3,8 @@ package com.aiadver.microservice.auth.translator;
 import com.aiadver.framework.microservice.support.BaseTranslator;
 import com.aiadver.framework.microservice.util.CommonUtils;
 import com.aiadver.microservice.auth.entity.UserInfo;
+import com.aiadver.microservice.auth.model.UserModel;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -22,14 +22,15 @@ public class UserInfoTranslator extends BaseTranslator<UserInfo, UserDetails> {
 
     @Override
     public UserDetails copySourceToTarget(UserInfo userInfo) {
-        UserDetails userDetails = new User(userInfo.getUsername(),
-                userInfo.getPassword(),
-                userInfo.getEnabled(),
-                userInfo.getAccountNonExpired(),
-                userInfo.getCredentialsNonExpired(),
-                userInfo.getAccountNonLocked(),
-                roleInfoTranslator.copySourceToTarget(userInfo.getRoleInfos()));
-        return userDetails;
+        UserModel model = new UserModel();
+        model.setUsername(userInfo.getUsername());
+        model.setPassword(userInfo.getPassword());
+        model.setEnabled(userInfo.getEnabled());
+        model.setAccountNonExpired(userInfo.getAccountNonExpired());
+        model.setAccountNonLocked(userInfo.getAccountNonLocked());
+        model.setCredentialsNonExpired(userInfo.getCredentialsNonExpired());
+        model.setAuthorities(roleInfoTranslator.copySourceToTargetSet(userInfo.getRoleInfos()));
+        return model;
     }
 
     @Override
@@ -41,7 +42,7 @@ public class UserInfoTranslator extends BaseTranslator<UserInfo, UserDetails> {
         userInfo.setAccountNonExpired(userDetails.isAccountNonExpired());
         userInfo.setCredentialsNonExpired(userDetails.isCredentialsNonExpired());
         userInfo.setAccountNonLocked(userDetails.isAccountNonLocked());
-        userInfo.setRoleInfos(roleInfoTranslator.copyTargetToSource((List<GrantedAuthority>) CommonUtils.getList(userDetails.getAuthorities())));
+        userInfo.setRoleInfos(roleInfoTranslator.copyTargetToSourceList((List<GrantedAuthority>) CommonUtils.getList(userDetails.getAuthorities())));
         return userInfo;
     }
 }

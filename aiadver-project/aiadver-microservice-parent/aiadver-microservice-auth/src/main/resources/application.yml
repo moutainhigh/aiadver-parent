@@ -22,6 +22,9 @@ spring:
     user:
       name: admin
       password: admin
+      roles:
+        - "ROLE_USER"
+        - "ROLE_ADMIN"
 server:
   port: 8084
 

@@ -27,7 +27,7 @@ import java.util.List;
 @Slf4j
 @Service("clientService")
 @Transactional(rollbackFor = Exception.class)
-@CacheConfig(cacheNames = "clientService")
+@CacheConfig(cacheNames = "client")
 public class ClientServiceImpl implements ClientService {
 
     @Resource(name = "defaultClientDetails")
@@ -49,7 +49,7 @@ public class ClientServiceImpl implements ClientService {
     private ClientInfoTranslator clientInfoTranslator;
 
     @Override
-    @Cacheable(value = "loadClientByClientId")
+    @Cacheable(key = "#root.methodName+'['+#clientId+']'")
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
         ClientInfo clientInfo = clientInfoRepository.getOneByClientId(clientId);
         ClientDetails clientDetails = clientInfoTranslator.copySourceToTarget(clientInfo);
@@ -90,7 +90,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public List<ClientDetails> listClientDetails() {
         List<ClientInfo> clientInfos = clientInfoRepository.findAll();
-        return clientInfoTranslator.copySourceToTarget(clientInfos);
+        return clientInfoTranslator.copySourceToTargetList(clientInfos);
     }
 
     @Override

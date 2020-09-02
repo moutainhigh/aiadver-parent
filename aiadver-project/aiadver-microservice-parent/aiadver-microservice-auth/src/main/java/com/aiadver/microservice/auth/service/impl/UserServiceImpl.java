@@ -23,7 +23,7 @@ import javax.annotation.Resource;
 @Slf4j
 @Service("userService")
 @Transactional(rollbackFor = Exception.class)
-@CacheConfig(cacheNames = "userService")
+@CacheConfig(cacheNames = "user")
 public class UserServiceImpl implements UserService {
 
     @Resource(name = "defaultUserDetails")
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     private UserInfoTranslator userInfoTranslator;
 
     @Override
-    @Cacheable(value = "loadUserByUsername")
+    @Cacheable(key = "#root.methodName+'['+#username+']'")
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserInfo userInfo = userInfoRepository.getOneByUsername(username);
         return userInfoTranslator.copySourceToTarget(userInfo);

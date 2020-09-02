@@ -87,4 +87,11 @@ public class CommonUtils {
         });
         return target;
     }
+
+    public static String getString(List<String> list) {
+        if (list == null || list.isEmpty()) {
+            return "";
+        }
+        return list.stream().collect(Collectors.joining(","));
+    }
 }

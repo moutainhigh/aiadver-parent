@@ -1,9 +1,13 @@
 package com.aiadver.microservice.auth.config;
 
+import com.aiadver.framework.microservice.util.CommonUtils;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.OAuth2ClientProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
@@ -16,16 +20,25 @@ import java.util.Collections;
  * @author george
  */
 @Configuration
-public class DefaultClientDetailsConfig {
+public class DefaultConfig {
 
     @Resource
     private OAuth2ClientProperties client;
 
+    @Resource
+    private SecurityProperties properties;
+
     @Resource(name = "passwordEncoder")
     private PasswordEncoder passwordEncoder;
 
-    public DefaultClientDetailsConfig(OAuth2ClientProperties client) {
-        this.client = client;
+    @Bean
+    public UserDetails defaultUserDetails() {
+        SecurityProperties.User user = properties.getUser();
+        UserDetails details = User.withUsername(user.getName())
+                .password(passwordEncoder.encode(user.getPassword()))
+                .authorities(AuthorityUtils.commaSeparatedStringToAuthorityList(CommonUtils.getString(user.getRoles())))
+                .build();
+        return details;
     }
 
     @Bean

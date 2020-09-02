@@ -2,8 +2,8 @@ package com.aiadver.microservice.auth.translator;
 
 import com.aiadver.framework.microservice.support.BaseTranslator;
 import com.aiadver.microservice.auth.entity.RoleInfo;
+import com.aiadver.microservice.auth.model.AuthorityModel;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,8 +13,9 @@ import org.springframework.stereotype.Component;
 public class RoleInfoTranslator extends BaseTranslator<RoleInfo, GrantedAuthority> {
     @Override
     public GrantedAuthority copySourceToTarget(RoleInfo roleInfo) {
-        GrantedAuthority authority = new SimpleGrantedAuthority(roleInfo.getRole());
-        return authority;
+        AuthorityModel model = new AuthorityModel();
+        model.setAuthority(roleInfo.getRole());
+        return model;
     }
 
     @Override

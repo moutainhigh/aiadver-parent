@@ -1,6 +1,8 @@
 package com.aiadver.framework.microservice.support;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -22,8 +24,12 @@ public abstract class BaseTranslator<Source, Target> {
      * @param sources
      * @return
      */
-    public List<Target> copySourceToTarget(List<Source> sources) {
+    public List<Target> copySourceToTargetList(Collection<Source> sources) {
         return sources.stream().map(this::copySourceToTarget).collect(Collectors.toList());
+    }
+
+    public Set<Target> copySourceToTargetSet(Collection<Source> sources) {
+        return sources.stream().map(this::copySourceToTarget).collect(Collectors.toSet());
     }
 
     /**
@@ -40,8 +46,12 @@ public abstract class BaseTranslator<Source, Target> {
      * @param targets
      * @return
      */
-    public List<Source> copyTargetToSource(List<Target> targets) {
+    public List<Source> copyTargetToSourceList(Collection<Target> targets) {
         return targets.stream().map(this::copyTargetToSource).collect(Collectors.toList());
+    }
+
+    public Set<Source> copyTargetToSourceSet(Collection<Target> targets) {
+        return targets.stream().map(this::copyTargetToSource).collect(Collectors.toSet());
     }
 
 

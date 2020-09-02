@@ -4,8 +4,8 @@ package com.aiadver.microservice.auth.translator;
 import com.aiadver.framework.microservice.support.BaseTranslator;
 import com.aiadver.framework.microservice.util.CommonUtils;
 import com.aiadver.microservice.auth.entity.ClientInfo;
+import com.aiadver.microservice.auth.model.ClientModel;
 import org.springframework.security.oauth2.provider.ClientDetails;
-import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -25,36 +25,34 @@ public class ClientInfoTranslator extends BaseTranslator<ClientInfo, ClientDetai
 
     @Override
     public ClientDetails copySourceToTarget(ClientInfo clientInfo) {
-        BaseClientDetails clientDetails = new BaseClientDetails();
-        clientDetails.setClientId(clientInfo.getClientId());
-        clientDetails.setClientSecret(clientInfo.getClientSecret());
-        clientDetails.setScope(CommonUtils.getList(clientInfo.getScope()));
-        clientDetails.setResourceIds(CommonUtils.getList(clientInfo.getResourceIds()));
-        clientDetails.setAuthorizedGrantTypes(CommonUtils.getList(clientInfo.getAuthorizedGrantTypes()));
-        clientDetails.setRegisteredRedirectUri(CommonUtils.getSet(clientInfo.getRegisteredRedirectUris()));
-        clientDetails.setAutoApproveScopes(CommonUtils.getList(clientInfo.getAutoApproveScopes()));
-        clientDetails.setAuthorities(roleInfoTranslator.copySourceToTarget(clientInfo.getRoleInfos()));
-        clientDetails.setAccessTokenValiditySeconds(clientInfo.getAccessTokenValiditySeconds());
-        clientDetails.setRefreshTokenValiditySeconds(clientInfo.getRefreshTokenValiditySeconds());
-        clientDetails.setAdditionalInformation(additionalInfoTranslator.copySourceToTargetMap(clientInfo.getAdditionalInformation()));
-        return clientDetails;
+        ClientModel model = new ClientModel();
+        model.setClientId(clientInfo.getClientId());
+        model.setClientSecret(clientInfo.getClientSecret());
+        model.setScope(CommonUtils.getSet(clientInfo.getScope()));
+        model.setResourceIds(CommonUtils.getSet(clientInfo.getResourceIds()));
+        model.setAuthorizedGrantTypes(CommonUtils.getSet(clientInfo.getAuthorizedGrantTypes()));
+        model.setRegisteredRedirectUri(CommonUtils.getSet(clientInfo.getRegisteredRedirectUris()));
+        model.setAutoApproveScopes(CommonUtils.getSet(clientInfo.getAutoApproveScopes()));
+        model.setAuthorities(roleInfoTranslator.copySourceToTargetList(clientInfo.getRoleInfos()));
+        model.setAccessTokenValiditySeconds(clientInfo.getAccessTokenValiditySeconds());
+        model.setRefreshTokenValiditySeconds(clientInfo.getRefreshTokenValiditySeconds());
+        model.setAdditionalInformation(additionalInfoTranslator.copySourceToTargetMap(clientInfo.getAdditionalInformation()));
+        return model;
     }
 
     @Override
     public ClientInfo copyTargetToSource(ClientDetails clientDetails) {
-        BaseClientDetails baseClientDetails = new BaseClientDetails(clientDetails);
         ClientInfo clientInfo = new ClientInfo();
-        clientInfo.setClientId(baseClientDetails.getClientId());
-        clientInfo.setClientSecret(baseClientDetails.getClientSecret());
-        clientInfo.setScope(CommonUtils.getString(baseClientDetails.getScope()));
-        clientInfo.setResourceIds(CommonUtils.getString(baseClientDetails.getResourceIds()));
-        clientInfo.setAuthorizedGrantTypes(CommonUtils.getString(baseClientDetails.getAuthorizedGrantTypes()));
-        clientInfo.setRegisteredRedirectUris(CommonUtils.getString(baseClientDetails.getRegisteredRedirectUri()));
-        clientInfo.setAutoApproveScopes(CommonUtils.getString(baseClientDetails.getAutoApproveScopes()));
-        clientInfo.setRoleInfos(roleInfoTranslator.copyTargetToSource(CommonUtils.getList(baseClientDetails.getAuthorities())));
-        clientInfo.setAccessTokenValiditySeconds(baseClientDetails.getAccessTokenValiditySeconds());
-        clientInfo.setRefreshTokenValiditySeconds(baseClientDetails.getRefreshTokenValiditySeconds());
-        clientInfo.setAdditionalInformation(additionalInfoTranslator.copyTargetMapToSource(baseClientDetails.getAdditionalInformation()));
+        clientInfo.setClientId(clientDetails.getClientId());
+        clientInfo.setClientSecret(clientDetails.getClientSecret());
+        clientInfo.setScope(CommonUtils.getString(clientDetails.getScope()));
+        clientInfo.setResourceIds(CommonUtils.getString(clientDetails.getResourceIds()));
+        clientInfo.setAuthorizedGrantTypes(CommonUtils.getString(clientDetails.getAuthorizedGrantTypes()));
+        clientInfo.setRegisteredRedirectUris(CommonUtils.getString(clientDetails.getRegisteredRedirectUri()));
+        clientInfo.setRoleInfos(roleInfoTranslator.copyTargetToSourceList(CommonUtils.getList(clientDetails.getAuthorities())));
+        clientInfo.setAccessTokenValiditySeconds(clientDetails.getAccessTokenValiditySeconds());
+        clientInfo.setRefreshTokenValiditySeconds(clientDetails.getRefreshTokenValiditySeconds());
+        clientInfo.setAdditionalInformation(additionalInfoTranslator.copyTargetMapToSource(clientDetails.getAdditionalInformation()));
         return clientInfo;
     }
 
