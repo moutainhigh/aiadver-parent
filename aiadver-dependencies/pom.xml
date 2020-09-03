@@ -32,6 +32,11 @@
                 <artifactId>aiadver-boot-starter-data-jpa</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.aiadver.boot</groupId>
+                <artifactId>aiadver-boot-starter-oauth2</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
 
             <!-- 框架 -->
             <dependency>

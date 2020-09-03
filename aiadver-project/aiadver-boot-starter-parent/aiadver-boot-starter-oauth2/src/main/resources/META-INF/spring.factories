@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.aiadver.boot.oauth2.Oauth2AutoConfig

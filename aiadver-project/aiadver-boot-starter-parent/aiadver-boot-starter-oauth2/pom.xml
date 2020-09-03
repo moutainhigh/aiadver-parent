@@ -3,28 +3,22 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>aiadver-parent</artifactId>
-        <groupId>com.aiadver</groupId>
+        <artifactId>aiadver-boot-starter-parent</artifactId>
+        <groupId>com.aiadver.boot</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.aiadver.boot</groupId>
-    <artifactId>aiadver-boot-starter-parent</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>aiadver-boot-starter-data-jpa</module>
-        <module>aiadver-boot-starter-oauth2</module>
-    </modules>
+    <artifactId>aiadver-boot-starter-oauth2</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
             <optional>true</optional>
         </dependency>
     </dependencies>

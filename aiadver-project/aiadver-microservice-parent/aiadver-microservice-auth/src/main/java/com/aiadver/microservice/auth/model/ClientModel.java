@@ -66,7 +66,7 @@ public class ClientModel implements ClientDetails {
             return false;
         }
         for (String auto : autoApproveScopes) {
-            if (auto.equals("true") || scope.matches(auto)) {
+            if ("true".equals(auto) || scope.matches(auto)) {
                 return true;
             }
         }
