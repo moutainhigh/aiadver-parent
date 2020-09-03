@@ -21,7 +21,6 @@ public class RedisConfig {
     @Resource(name = "redisConnectionFactory")
     private RedisConnectionFactory redisConnectionFactory;
 
-
     @Bean
     public RedisCacheManager cacheManager() {
         RedisCacheConfiguration configuration = RedisCacheConfiguration.defaultCacheConfig()

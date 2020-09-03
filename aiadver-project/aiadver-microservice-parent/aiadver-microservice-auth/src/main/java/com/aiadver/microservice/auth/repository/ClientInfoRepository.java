@@ -16,7 +16,6 @@ public interface ClientInfoRepository extends BaseRepository<ClientInfo, Long> {
      */
     ClientInfo getOneByClientId(String clientId);
 
-
     /**
      * 通过clientId删除ClientInfo对象
      *

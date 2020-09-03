@@ -10,5 +10,4 @@ import org.springframework.cloud.openfeign.FeignClient;
 @FeignClient(contextId = "feignDemoService", name = "aiadver-microservice-demo-provider", fallback = FeignDemoServiceImpl.class)
 public interface FeignDemoService extends FeignDemoClient {
 
-
 }

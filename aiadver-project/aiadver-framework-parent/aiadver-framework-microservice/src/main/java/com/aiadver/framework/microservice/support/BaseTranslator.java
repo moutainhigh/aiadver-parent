@@ -54,5 +54,4 @@ public abstract class BaseTranslator<Source, Target> {
         return targets.stream().map(this::copyTargetToSource).collect(Collectors.toSet());
     }
 
-
 }

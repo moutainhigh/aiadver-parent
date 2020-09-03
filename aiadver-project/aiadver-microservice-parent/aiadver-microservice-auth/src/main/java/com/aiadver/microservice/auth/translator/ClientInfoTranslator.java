@@ -1,6 +1,5 @@
 package com.aiadver.microservice.auth.translator;
 
-
 import com.aiadver.framework.microservice.support.BaseTranslator;
 import com.aiadver.framework.microservice.util.CommonUtils;
 import com.aiadver.microservice.auth.entity.ClientInfo;
@@ -9,7 +8,6 @@ import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-
 
 /**
  * @author george

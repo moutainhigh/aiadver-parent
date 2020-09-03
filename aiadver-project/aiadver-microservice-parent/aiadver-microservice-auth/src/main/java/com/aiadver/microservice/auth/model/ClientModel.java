@@ -15,36 +15,16 @@ import java.util.Set;
 @Data
 public class ClientModel implements ClientDetails {
 
-
     private String clientId;
-
-
     private String clientSecret;
-
-
     private Set<String> scope;
-
-
     private Set<String> resourceIds;
-
-
     private Set<String> authorizedGrantTypes;
-
-
     private Set<String> registeredRedirectUri;
-
-
     private Set<String> autoApproveScopes;
-
     private List<GrantedAuthority> authorities;
-
-
     private Integer accessTokenValiditySeconds;
-
-
     private Integer refreshTokenValiditySeconds;
-
-
     private Map<String, Object> additionalInformation;
 
     @Override

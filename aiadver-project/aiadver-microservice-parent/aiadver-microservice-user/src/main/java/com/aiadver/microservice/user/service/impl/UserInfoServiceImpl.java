@@ -19,7 +19,6 @@ import java.util.Optional;
 @Service("userInfoService")
 public class UserInfoServiceImpl implements UserInfoService {
 
-
     @Resource
     private UserRepository repository;
 

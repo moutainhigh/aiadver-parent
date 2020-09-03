@@ -8,7 +8,6 @@ import com.aiadver.microservice.auth.entity.RoleInfo;
  */
 public interface RoleInfoRepository extends BaseRepository<RoleInfo, Long> {
 
-
     /**
      * 通过role获取roleInfo对象
      *

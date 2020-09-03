@@ -8,7 +8,6 @@ import com.aiadver.microservice.auth.entity.UserInfo;
  */
 public interface UserInfoRepository extends BaseRepository<UserInfo, Long> {
 
-
     /**
      * 通过用户名获取用户信息
      *

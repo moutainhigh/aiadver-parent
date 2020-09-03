@@ -70,5 +70,4 @@ public class Oauth2RequestJackson2Deserializer extends StdDeserializer<OAuth2Req
         return auth2Request;
     }
 
-
 }
