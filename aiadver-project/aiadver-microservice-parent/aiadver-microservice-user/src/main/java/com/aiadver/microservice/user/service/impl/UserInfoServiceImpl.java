@@ -30,7 +30,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         log.info("query model: " + model.toString());
         User user = translator.copyTargetToSource(model);
         List<User> users = repository.findAll(user);
-        return translator.copySourceToTarget(users);
+        return translator.copySourceToTargetList(users);
     }
 
     @Override

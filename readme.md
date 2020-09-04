@@ -2,7 +2,7 @@
 
 #### sonar配置
 
-```
+```shell script
 mvn sonar:sonar \
   -Dsonar.projectKey=csg-parent \
   -Dsonar.host.url=http://192.168.20.3:9002 \
@@ -11,8 +11,23 @@ mvn sonar:sonar \
 
 #### skywalking配置
 
-```
+```shell script
 -javaagent:E:\Java\apache-skywalking-apm-bin\agent\skywalking-agent.jar \
   -Dskywalking.agent.service_name=${spring.applicaiton.name} \
   -Dskywalking.collector.backend_service=192.168.20.3:11800
+```
+
+#### keypair文件生成
+
+```shell script
+keytool -genkeypair \
+    -alias aiadver-jwt \
+    -validity 3650 \
+    -keyalg RSA \
+    -dname "CN=aiadver-jwt,OU=aiadver,O=iflytek,L=guangzhou,C=CN" \
+    -keypass aiadver123 \
+    -keystore aiadver.jks \
+    -storepass iflytek123
+
+keytool -list -rfc --keystore aiadver.jks | openssl x509 -inform pem -pubkey
 ```
