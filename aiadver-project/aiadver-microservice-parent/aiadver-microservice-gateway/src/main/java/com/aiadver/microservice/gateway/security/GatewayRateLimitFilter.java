@@ -1,6 +1,5 @@
 package com.aiadver.microservice.gateway.security;
 
-
 import com.google.common.util.concurrent.RateLimiter;
 import io.netty.buffer.UnpooledByteBufAllocator;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +22,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class GatewayRateLimitFilter implements WebFilter {
 
-    private RateLimiter rateLimiter = RateLimiter.create(100);
+    private final RateLimiter rateLimiter = RateLimiter.create(100);
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
