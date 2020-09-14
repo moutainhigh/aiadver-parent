@@ -1,4 +1,4 @@
-package com.aiadver.microservice.gateway.security;
+package com.aiadver.microservice.gateway.filter;
 
 import com.google.common.util.concurrent.RateLimiter;
 import io.netty.buffer.UnpooledByteBufAllocator;
