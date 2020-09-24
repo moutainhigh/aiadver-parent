@@ -14,11 +14,12 @@
     <packaging>pom</packaging>
     <modules>
         <module>aiadver-microservice-admin</module>
-        <module>aiadver-microservice-demo-provider</module>
+        <module>aiadver-microservice-asr</module>
+        <module>aiadver-microservice-auth</module>
         <module>aiadver-microservice-demo-consumer</module>
+        <module>aiadver-microservice-demo-provider</module>
         <module>aiadver-microservice-gateway</module>
         <module>aiadver-microservice-user</module>
-        <module>aiadver-microservice-auth</module>
     </modules>
 
     <dependencies>

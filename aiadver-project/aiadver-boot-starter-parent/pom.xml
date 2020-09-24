@@ -15,6 +15,7 @@
     <modules>
         <module>aiadver-boot-starter-data-jpa</module>
         <module>aiadver-boot-starter-oauth2</module>
+        <module>aiadver-boot-starter-thrift</module>
     </modules>
 
     <dependencies>

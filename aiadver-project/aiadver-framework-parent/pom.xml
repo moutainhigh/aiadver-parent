@@ -13,8 +13,8 @@
     <artifactId>aiadver-framework-parent</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>aiadver-framework-api</module>
         <module>aiadver-framework-microservice</module>
     </modules>
-
 
 </project>

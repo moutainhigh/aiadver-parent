@@ -13,9 +13,22 @@
     <artifactId>aiadver-api-parent</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>aiadver-api-asr</module>
         <module>aiadver-api-demo-provider</module>
+        <module>aiadver-api-thrift</module>
         <module>aiadver-api-user</module>
     </modules>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 </project>

@@ -17,7 +17,17 @@
             <!-- api -->
             <dependency>
                 <groupId>com.aiadver.api</groupId>
+                <artifactId>aiadver-api-asr</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aiadver.api</groupId>
                 <artifactId>aiadver-api-demo-provider</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aiadver.api</groupId>
+                <artifactId>aiadver-api-thrift</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
             <dependency>
@@ -37,8 +47,18 @@
                 <artifactId>aiadver-boot-starter-oauth2</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.aiadver.boot</groupId>
+                <artifactId>aiadver-boot-starter-thrift</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
 
             <!-- 框架 -->
+            <dependency>
+                <groupId>com.aiadver.framework</groupId>
+                <artifactId>aiadver-framework-api</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.aiadver.framework</groupId>
                 <artifactId>aiadver-framework-microservice</artifactId>
@@ -49,6 +69,11 @@
             <dependency>
                 <groupId>com.aiadver.microservice</groupId>
                 <artifactId>aiadver-microservice-admin</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aiadver.microservice</groupId>
+                <artifactId>aiadver-microservice-asr</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
             <dependency>
@@ -93,6 +118,12 @@
                 <groupId>commons-collections</groupId>
                 <artifactId>commons-collections</artifactId>
                 <version>3.2.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.thrift</groupId>
+                <artifactId>libthrift</artifactId>
+                <version>0.13.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
