@@ -31,10 +31,6 @@
             <artifactId>spring-cloud-starter-dubbo</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.thrift</groupId>
-            <artifactId>libthrift</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.aiadver.api</groupId>
             <artifactId>aiadver-api-asr</artifactId>
         </dependency>

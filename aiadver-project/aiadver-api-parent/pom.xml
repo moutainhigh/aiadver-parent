@@ -15,7 +15,7 @@
     <modules>
         <module>aiadver-api-asr</module>
         <module>aiadver-api-demo-provider</module>
-        <module>aiadver-api-thrift</module>
+        <module>aiadver-api-tts</module>
         <module>aiadver-api-user</module>
     </modules>
 

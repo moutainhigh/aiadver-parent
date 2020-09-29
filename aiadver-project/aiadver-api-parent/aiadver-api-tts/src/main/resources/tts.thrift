@@ -1,4 +1,4 @@
-namespace java com.aiadver.api.thrift.tts
+namespace java com.aiadver.api.tts.thrift
 
 struct TTSResult{
     1:i32 status_code,

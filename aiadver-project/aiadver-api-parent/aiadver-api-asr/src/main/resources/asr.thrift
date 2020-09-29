@@ -1,4 +1,4 @@
-namespace java com.aiadver.api.thrift.asr
+namespace java com.aiadver.api.asr.thrift
 
 struct ASRWrite{
     1:i32 epStatus,

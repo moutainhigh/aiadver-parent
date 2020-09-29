@@ -27,7 +27,7 @@
             </dependency>
             <dependency>
                 <groupId>com.aiadver.api</groupId>
-                <artifactId>aiadver-api-thrift</artifactId>
+                <artifactId>aiadver-api-tts</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>
             <dependency>
