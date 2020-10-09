@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package iat;
+
+import "google/api/annotations.proto";
+
+option java_package = "com.aiadver.api.asr.grpc";
+
+message IatRequest {//请求参数
+  map<string, string>  sessionParam = 1; //创建会话参数，只要求传一次，后续持续向服务端写音频时可以忽略（服务也不再解析）,详细说明见：sessionParam参数说明
+  bytes               samples = 2; //音频数据
+  string              samplesInfo = 3; //音频数据信息，扩展参数，保留
+  bool                endFlag = 4;//音频结束标记
+}
+
+message IatResult {//识别结果
+  string      errStr = 1;//错误描述
+  int32       errCode = 2;//错误码
+  string      ansStr = 3;//结果
+  bool        endFlag = 4;//识别结束标记
+}
+
+service Iat {
+  //采用流的方式持续向服务端写音频数据，及持续从服务端获得结果
+  //音频请求流,IatRequest.endFlag为true时代表写音频结束
+  //结果返回流,IatResult.endFlag为true时代表会话识别结束
+  rpc createRec(stream IatRequest) returns (stream IatResult) {
+    option (google.api.http) = {
+      post: "/createRec"
+      body: "*"
+    };
+  }
+}

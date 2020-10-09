@@ -13,7 +13,8 @@
     <artifactId>aiadver-api-parent</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>aiadver-api-asr</module>
+        <module>aiadver-api-asr-grpc</module>
+        <module>aiadver-api-asr-thrift</module>
         <module>aiadver-api-demo-provider</module>
         <module>aiadver-api-tts</module>
         <module>aiadver-api-user</module>
