@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+package tts;
+
+option java_package = "com.aiadver.api.tts.grpc";
+
+service Tts {
+  rpc createRec(stream TtsRequest) returns (stream TtsResult) {
+  }
+}
+
+message TtsRequest {
+  map<string, string> sessionParam = 1;     // 创建会话参数
+  string text = 2;                         // 需要tts合成的文本数据
+  bool endFlag = 3;                        // 最后一次文本标志符
+}
+
+// sessionParam可设置的参数如下：
+//      Key                   value                                         description
+//      sid                   string                                        会话id，这个参数一定要传，方便以后检索日志
+//      sample_rate           8000或16000                                   采样率，默认16000
+//      frame_size            整数                                          固定每次编码块的大小（640的倍数，如：640、1280...），默认为0，即不固定每次编码块的大小
+//      audio_coding          raw/speex/speex-wb/opus                       音频编码格式，默认raw
+//      voice_name            xiaoyi/catherine/...(可增加)                  发音人
+
+//      speed                 -500~500                                      语速，默认是0
+//      volume                int                                           音量
+//      pitch                 int                                           音高
+//      read_all_marks        0~1                                           是否读出所有的标点符号
+
+//      read_number           0~3                                           读数字的方式
+// enum
+// {
+//     TTS_RN_AUTO_VALUE               =    0,    /* Auto, read as value if not sure */
+//     TTS_RN_VALUE                    =    1,    /* Read as value */
+//     TTS_RN_DIGIT                    =    2,    /* Read as string */
+//     TTS_RN_AUTO_DIGIT               =    3,    /* Auto, read as string if not sure */
+// };
+
+//      text_type             0~4                                           文本类型
+// enum
+// {
+//     TTS_TT_AUTO                     =    0,    /* auto, read as plain text if not sure */
+//     TTS_TT_PLAINTEXT                =    1,    /* read as plain text */
+//     TTS_TT_CSSMLTEXT                =    2,    /* read as CSSML text */
+//     TTS_TT_SSMLTEXT                 =    3,    /* read as SSML text */
+//     TTS_TT_EMAILTEXT                =    4,    /* read as EMail text */
+// };
+
+//      read_english         0~2                                              读取英文的方式
+// enum
+// {
+//     TTS_RE_AUTO_WORD                =    0,    /* Auto, read as word if not sure */
+//     TTS_RE_LETTER                   =    1,    /* Read as letter */
+//     TTS_RE_AUTO_LETTER              =    2,    /* Auto, read as letter if not sure */
+// };
+
+//      stall_style         0~4                                             设置停顿风格
+// enum
+// {
+//     TTS_SSL_NORMAL                  =    0,    /* Normal */
+//     TTS_SSL_STALL                   =    1,    /* A little stall */
+//     TTS_SSL_SNATCHY                 =    2,    /* Evident snatchy */
+//     TTS_SSL_UNCEASING               =    3,    /* Unceasing */
+//     TTS_SSL_VERBOSE                 =    4,    /* Vobose */
+// };
+
+//      phrase_style        0~1                                             设置短语库风格
+// enum
+// {
+//     TTS_PHRASE_NORMAL                =    0,   /* normal phrase bundle */
+//     TTS_PHRASE_SLOW,                           /* slow phrase bundle */
+// };
+
+//      enter_treat         0~3                                             分句时对回车符的处理
+// enum
+// {
+//     TTS_ET_AUTO                     =    0,    /* Automatically treat <enter> char(s) */
+//     TTS_ET_SPLITSEN                 =    1,    /* When meeting <enter> char(s), split sentence */
+//     TTS_ET_NOTHING                  =    2,    /* Treat <enter> char(s) as noting */
+//     TTS_ET_SPACE                    =    3,    /* Treat <enter> char(s) as space char */
+// };
+
+
+
+message TtsResult {
+  string errStr = 1;                      // 错误描述
+  int32 errCode = 2;                      // 错误码
+  bytes data = 3;                         // 返回的音频数据（没有音频头）
+  map<string, string> dataInfo = 4;        // 音频数据的信息
+  bool endFlag = 5;                       // 最后一次音频标识符
+}
+
+// 错误码详解：
+//      errCode                                 value           errStr
+//      TURING_SUCCESS                          0               成功
+//      TURING_ERROR_TTS_GENERAL                32001           一般性错误
+//      TURING_ERROR_TTS_ENGINE                 32002           引擎错误
+//      TURING_ERROR_TTS_QUEUE_FULL             32003           服务器队列已满，请稍后重试
+//      TURING_ERROR_TTS_TIMEOUT                32004           会话超时（默认同一次会话中，发送数据的间隔不能超过15s）
+//      TURING_ERROR_TTS_INVAILD_PARAM          32005           无效的参数
+//      TURING_ERROR_TTS_EMPTY_INPUT            32006           输入文本为空
+//      TURING_ERROR_TTS_LONG_INPUT             32007           输入文本过长（最长不能超过60KB）
+
+// dataInfo信息详解：
+//      Key                   value                                         description
+//      text                  string                                        原始的输入文本
+//      curStart              string                                        本次音频对应的文本开始位置
+//      curEnd                string                                        本次音频对应的文本结束位置

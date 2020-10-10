@@ -16,6 +16,7 @@
         <module>aiadver-api-asr-grpc</module>
         <module>aiadver-api-asr-thrift</module>
         <module>aiadver-api-demo-provider</module>
+        <module>aiadver-api-tts-grpc</module>
         <module>aiadver-api-tts-thrift</module>
         <module>aiadver-api-user</module>
     </modules>
