@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.aiadver.boot.thrift</groupId>
     <artifactId>aiadver-boot-starter-thrift</artifactId>
-
 
 </project>

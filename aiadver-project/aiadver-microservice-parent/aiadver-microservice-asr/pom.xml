@@ -32,7 +32,7 @@
         </dependency>
         <dependency>
             <groupId>com.aiadver.api</groupId>
-            <artifactId>aiadver-api-asr</artifactId>
+            <artifactId>aiadver-api-asr-thrift</artifactId>
         </dependency>
     </dependencies>
 </project>
